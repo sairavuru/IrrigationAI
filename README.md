@@ -12,5 +12,6 @@ This repository contains a Dockerfile which allows for the download of MODIS dat
 ## Model
 
 ## Output
-![alt text](https://github.com/sairavuru/spring2020_w210_irrigationAI/sample_output.png)
+
+![alt text](sample_output.png)
 
