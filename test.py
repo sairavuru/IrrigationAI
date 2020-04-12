@@ -82,7 +82,7 @@ def main():
             print(f"Done. Elapsed time {endTime-startTime}")
 
             res.Bucket('irrigationai-data').upload_file(out_path,'MODIS/MOD13Q1-multiband-2008-2009/'+d+'_4bands_full.tif')
-            res.Bucket('irrigationai-data').upload_file(out_path_lowres,'MODIS/MOD13Q1-multiband-2008-2009/'+d+'_4bands_lowres.tif')
+            #res.Bucket('irrigationai-data').upload_file(out_path_lowres,'MODIS/MOD13Q1-multiband-2008-2009/'+d+'_4bands_lowres.tif')
             print('Saved into S3!')
 
         # octvi.globalVi("MOD13Q1","2008-05-08","./example_standard.tif")

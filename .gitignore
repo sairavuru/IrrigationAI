@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#remove all tif
+*.tif
+
+#ignore weights
+/weights

@@ -1,6 +1,6 @@
 # Dockerfile
-#FROM python:3.6-slim
-FROM w251/hw06:x86-64
+FROM python:3.6-slim
+#FROM w251/hw06:x86-64
 
 # Update base container install
 RUN apt-get update
@@ -24,7 +24,7 @@ ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
 ENV C_INCLUDE_PATH=/usr/include/gdal
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir numpy boto3 s3fs botocore awscli pandas
+RUN pip install --no-cache-dir numpy boto3 s3fs botocore awscli pandas Keras tensorflow
 
 # This will install latest version of GDAL
 #RUN pip install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal"
@@ -50,9 +50,9 @@ COPY . .
 #RUN mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.58.254:/app
 
 #run the python file
-CMD [ "python", "./test.py", "2019-01", "2020-03"]
-CMD gdalwarp -r max -ts 4800 4800 -wm 2048 -multi -wo NUM_THREADS=ALL_CPUS -co NUM_THREADS=ALL_CPUS -co COMPRESS=LZW /home/ec2-user/s3irrigationai/MOD13Q1-multiband-2008-2009/2019-01-01_4bands_full.tif /home/ec2-user/s3irrigationai/MODIS/MOD13Q1-multiband-2008-2009/2019-01-01_4bands_lowres.tif
-
+#CMD [ "python", "./test.py", "2019-01", "2020-03"]
+CMD python downsampletif.py
+CMD predict.py
 
 
 
