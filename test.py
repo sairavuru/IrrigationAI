@@ -27,9 +27,21 @@ def main():
 
     start_date = sys.argv[1]
     end_date = sys.argv[2]
+    product = sys.argv[3]
+    bands = sys.argv[4]
     print('Following months of data being downloaded: ')
     date_range = [datetime.datetime.strftime(x, '%Y-%m') for x in list(pd.date_range(start=start_date, end=end_date, freq='m'))]
     print(date_range)
+
+    if product == 'MODIS':
+        measure = 'MOD13Q1'
+    else:
+        measure = 'LANDSAT'
+
+    if bands == 'ALL':
+        layers = ['NDVI', 'EVI', 'VI', 'Red']
+    else:
+        layers = bands.split(',')
 
     out_path = os.getcwd()+'/test.tif'
     out_path_lowres = os.getcwd()+'/test_lowres.tif'
@@ -40,14 +52,14 @@ def main():
     print(out_path_lowres)
 
     for m in date_range:
-        modisDates = url.getDates("MOD13Q1",m)
+        modisDates = url.getDates(measure,m)
         print('Following cycles will be downloaded for the month: ')
         print(modisDates)
 
         for d in modisDates:
             print('HDF files for the following cycle will be downloaded: ')
             print(d)
-            tiles = url.getUrls("MOD13Q1", d)
+            tiles = url.getUrls(measure, d)
             tiles.sort(key=lambda x: x[1])
             print(tiles)
             print(len(tiles))
@@ -81,7 +93,7 @@ def main():
             endTime = datetime.datetime.now()
             print(f"Done. Elapsed time {endTime-startTime}")
 
-            res.Bucket('irrigationai-data').upload_file(out_path,'MODIS/MOD13Q1-multiband-2008-2009/'+d+'_4bands_full.tif')
+            res.Bucket('irrigationai-data').upload_file(out_path,'MODIS/'+measure+'-multiband-2008-2009/'+d+'_4bands_full.tif')
             #res.Bucket('irrigationai-data').upload_file(out_path_lowres,'MODIS/MOD13Q1-multiband-2008-2009/'+d+'_4bands_lowres.tif')
             print('Saved into S3!')
 

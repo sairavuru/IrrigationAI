@@ -27,8 +27,8 @@ ENV C_INCLUDE_PATH=/usr/include/gdal
 RUN pip install --no-cache-dir numpy boto3 s3fs botocore awscli pandas Keras tensorflow
 
 # This will install latest version of GDAL
-#RUN pip install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal"
-RUN pip install GDAL==1.10.0 --global-option=build_ext --global-option="-I/usr/include/gdal"
+RUN pip install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal"
+#RUN pip install GDAL==1.10.0 --global-option=build_ext --global-option="-I/usr/include/gdal"
 RUN gdalinfo --version
 
 RUN pip install --no-cache-dir octvi
@@ -50,9 +50,9 @@ COPY . .
 #RUN mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.58.254:/app
 
 #run the python file
-#CMD [ "python", "./test.py", "2019-01", "2020-03"]
+CMD [ "python", "./test.py", "2019-01", "2020-03", "MODIS", "ALL"]
 CMD python downsampletif.py
-CMD predict.py
+CMD python predict.py
 
 
 

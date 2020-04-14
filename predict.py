@@ -410,6 +410,6 @@ if __name__ == '__main__':
         final_tif = result_stg.astype(np.float16)
         tiff.imsave(out_path, final_tif)
 
-        res.Bucket('irrigationai-data').upload_file(out_path, 'MODIS/MOD13Q1-multiband-2008-2009/predicted/' + out_path)
+        #res.Bucket('irrigationai-data').upload_file(out_path, 'MODIS/MOD13Q1-multiband-2008-2009/predicted/' + out_path)
 
     print("Prediction Complete")
