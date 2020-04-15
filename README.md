@@ -6,7 +6,7 @@ http://people.ischool.berkeley.edu/~kaiqi/IrrigationAI/index.html
 This repository contains a Dockerfile which allows for the download of MODIS data between the specific time range, downsamples the tiff image for pre-trainer model inference and outputs a predicted image containing irrigation/no-irrigation classes.
 
 ## Data
-The 16-day Terra satellite 1kmx1km resolution [MODIS](https://modis.gsfc.nasa.gov) data is downloaded from the NASA Earthdata portal for 2008-2009 and used for training+validation together with the MIRCA2000 labeled dataset of irrigated and rainfed crops of the same time period. The 26 classes of crops in each irrigated and rainfed categories is combined to reflect a binary classification of irrigated and not irrigation.
+The 16-day Terra satellite 1kmx1km resolution [MODIS](https://modis.gsfc.nasa.gov) data is downloaded from the NASA Earthdata portal for 2008-2009 and used for training+validation together with the MIRCA2008 labeled dataset of irrigated and rainfed crops of the same time period. The 26 classes of crops in each irrigated and rainfed categories is combined to reflect a binary classification of irrigated and not irrigation.
 
 The following [bands](https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/modis/) are used for training:
 * Normalized Difference Vegetation Index (NDVI)
